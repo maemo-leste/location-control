@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=loca_ti_location_cpa
+Comment=Change the location settings
+Type=HildonControlPanelPlugin
+Icon=gps_location
+X-Text-Domain=osso-location-ui
+X-control-panel-plugin=libcplocation.so
+Categories=connectivity
