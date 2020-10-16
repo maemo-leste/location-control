@@ -1,0 +1,17 @@
+Source: osso-applet-location
+Section: libs
+Priority: optional
+Maintainer: Ivan J. <parazyd@dyne.org>
+Build-Depends:
+ debhelper (>= 10),
+ libhildon1-dev,
+ libosso-dev,
+ hildon-control-panel-dev,
+Standards-Version: 4.3.0
+
+Package: osso-applet-location
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends},
+ hildon-libs-l10n-mr | hildon-libs-l10n-mr0,
+ osso-location-ui-l10n-mr | osso-location-ui-l10n-mr0,
+Description: Control Panel Location plugin
