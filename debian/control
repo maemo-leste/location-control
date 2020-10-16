@@ -1,4 +1,4 @@
-Source: osso-applet-location
+Source: location-control
 Section: libs
 Priority: optional
 Maintainer: Ivan J. <parazyd@dyne.org>
@@ -9,7 +9,7 @@ Build-Depends:
  hildon-control-panel-dev,
 Standards-Version: 4.3.0
 
-Package: osso-applet-location
+Package: location-control
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends},
  hildon-libs-l10n-mr | hildon-libs-l10n-mr0,
