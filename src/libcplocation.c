@@ -22,10 +22,10 @@
 #include <hildon/hildon.h>
 #include <hildon-cp-plugin/hildon-cp-plugin-interface.h>
 
-#define GCONF_KEY_GPS_ENABLED     "/system/nokia/location/gps-enabled"
-#define GCONF_KEY_NETWORK_ENABLED "/system/nokia/location/network-enabled"
-#define GCONF_KEY_SUPL_SERVER     "/system/nokia/location/supl/server"
-#define GCONF_KEY_LOCATION_METHOD "/system/nokia/location/method"
+#define GCONF_KEY_GPS_DISABLED     "/system/nokia/location/gps-disabled"
+#define GCONF_KEY_NETWORK_DISABLED "/system/nokia/location/network-disabled"
+#define GCONF_KEY_SUPL_SERVER      "/system/nokia/location/supl/server"
+#define GCONF_KEY_LOCATION_METHOD  "/system/nokia/location/method"
 
 typedef struct {
 	osso_context_t *osso;
