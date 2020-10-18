@@ -16,16 +16,17 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <gconf/gconf-client.h>
 #include <gtk/gtk.h>
 #include <libintl.h>
 
 #include <hildon/hildon.h>
 #include <hildon-cp-plugin/hildon-cp-plugin-interface.h>
 
-#define GCONF_KEY_GPS_DISABLED     "/system/nokia/location/gps-disabled"
-#define GCONF_KEY_NETWORK_DISABLED "/system/nokia/location/network-disabled"
-#define GCONF_KEY_SUPL_SERVER      "/system/nokia/location/supl/server"
-#define GCONF_KEY_LOCATION_METHOD  "/system/nokia/location/method"
+#define GCONF_KEY_GPS_DISABLED    "/system/nokia/location/gps-disabled"
+#define GCONF_KEY_NET_DISABLED    "/system/nokia/location/network-disabled"
+#define GCONF_KEY_SUPL_SERVER     "/system/nokia/location/supl/server"
+#define GCONF_KEY_LOCATION_METHOD "/system/nokia/location/method"
 
 typedef struct {
 	osso_context_t *osso;
@@ -119,6 +120,12 @@ static void _net_check_btn_toggled_cb(GtkDialog *_dialog, gpointer user_data)
 static cpa_dialog *cpa_dialog_new(GtkWindow *parent)
 {
 	cpa_dialog *dialog;
+	gboolean gps_disabled, net_disabled;
+	GConfClient *gconf_client = gconf_client_get_default();
+	g_assert(GCONF_IS_CLIENT(gconf_client));
+
+	gps_disabled = gconf_client_get_bool(gconf_client, GCONF_KEY_GPS_DISABLED, NULL);
+	net_disabled = gconf_client_get_bool(gconf_client, GCONF_KEY_NET_DISABLED, NULL);
 
 	dialog = g_try_new0(cpa_dialog, 1);
 	dialog->pan = hildon_pannable_area_new();
@@ -127,6 +134,9 @@ static cpa_dialog *cpa_dialog_new(GtkWindow *parent)
 
 	gtk_button_set_label(GTK_BUTTON(dialog->gps_check_btn),
 			dgettext("osso-location-ui", "loca_fi_gps_on"));
+	hildon_check_button_set_active(
+			HILDON_CHECK_BUTTON(dialog->gps_check_btn), !gps_disabled);
+
 	/*
 	 * TODO: Internal GPS/None
 	 * See gtk_list_store_new, hildon_touch_selector_new,
@@ -151,20 +161,23 @@ static cpa_dialog *cpa_dialog_new(GtkWindow *parent)
 
 	gtk_button_set_label(GTK_BUTTON(dialog->net_check_btn),
 			dgettext("osso-location-ui", "loca_fi_enable_network_posit"));
+	hildon_check_button_set_active(
+			HILDON_CHECK_BUTTON(dialog->net_check_btn), !net_disabled);
+
 	dialog->server_label = gtk_label_new(
 			dgettext("osso-location-ui", "loca_fi_location_server"));
-
 	dialog->supl_server_entry = hildon_entry_new(HILDON_SIZE_FINGER_HEIGHT);
+	hildon_entry_set_text(HILDON_ENTRY(dialog->supl_server_entry),
+			gconf_client_get_string(gconf_client, GCONF_KEY_SUPL_SERVER, NULL));
 
 	dialog->box = gtk_vbox_new(TRUE, 0);
 	dialog->hbox = gtk_hbox_new(FALSE, 0);
 	dialog->vbox = gtk_vbox_new(TRUE, 0);
 
-	/* By default, we make these inactive */
-	gtk_widget_set_sensitive(dialog->gps_device_btn, FALSE);
-	gtk_widget_set_sensitive(dialog->gps_pair_btn, FALSE);
-	gtk_widget_set_sensitive(dialog->server_label, FALSE);
-	gtk_widget_set_sensitive(dialog->supl_server_entry, FALSE);
+	gtk_widget_set_sensitive(dialog->gps_device_btn, !gps_disabled);
+	gtk_widget_set_sensitive(dialog->gps_pair_btn, !gps_disabled);
+	gtk_widget_set_sensitive(dialog->server_label, !net_disabled);
+	gtk_widget_set_sensitive(dialog->supl_server_entry, !net_disabled);
 
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), dialog->gps_label, FALSE, FALSE, 0);
 	gtk_box_pack_start(GTK_BOX(dialog->vbox), dialog->gps_check_btn, FALSE, FALSE, 0);

@@ -3,8 +3,7 @@
 HILDON_CONTROL_PANEL_LIBDIR  = $(shell pkg-config hildon-control-panel --variable=plugindir)
 HILDON_CONTROL_PANEL_DATADIR = $(shell pkg-config hildon-control-panel --variable=plugindesktopentrydir)
 
-#SUBDIRS = src data schemas
-SUBDIRS = src data
+SUBDIRS = src data schemas
 
 all: $(SUBDIRS)
 

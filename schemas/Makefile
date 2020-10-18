@@ -3,10 +3,10 @@
 all:
 
 install:
-	mkdir -p $(DESTDIR)/etc/gconf/schemas
-	cp -f location.schemas $(DESTDIR)/etc/gconf/schemas/
+	mkdir -p $(DESTDIR)/usr/share/gconf/schemas
+	cp -f location.schemas $(DESTDIR)/usr/share/gconf/schemas/
 
 uninstall:
-	rm -f $(DESTDIR)/etc/gconf/schemas/location.schemas
+	rm -f $(DESTDIR)/usr/share/gconf/schemas/location.schemas
 
 clean:
