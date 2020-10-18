@@ -49,6 +49,24 @@ typedef struct {
 
 static gboolean cpa_save_settings(cpa_dialog *dialog)
 {
+	GConfClient *gconf_client = gconf_client_get_default();
+	g_assert(GCONF_IS_CLIENT(gconf_client));
+
+	gconf_client_set_bool(gconf_client,
+			GCONF_KEY_GPS_DISABLED,
+			!hildon_check_button_get_active(HILDON_CHECK_BUTTON(dialog->gps_check_btn)),
+			NULL);
+
+	gconf_client_set_bool(gconf_client,
+			GCONF_KEY_NET_DISABLED,
+			!hildon_check_button_get_active(HILDON_CHECK_BUTTON(dialog->net_check_btn)),
+			NULL);
+
+	gconf_client_set_string(gconf_client,
+			GCONF_KEY_SUPL_SERVER,
+			hildon_entry_get_text(HILDON_ENTRY(dialog->supl_server_entry)),
+			NULL);
+
 	return TRUE;
 }
 
