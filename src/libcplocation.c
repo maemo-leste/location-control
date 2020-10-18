@@ -138,12 +138,16 @@ static void _net_check_btn_toggled_cb(GtkDialog *_dialog, gpointer user_data)
 static cpa_dialog *cpa_dialog_new(GtkWindow *parent)
 {
 	cpa_dialog *dialog;
-	gboolean gps_disabled, net_disabled;
+	GtkWidget *selector;
+	GtkListStore *liststore;
+	GtkTreeModel *model;
+	GtkTreeIter iter;
+
 	GConfClient *gconf_client = gconf_client_get_default();
 	g_assert(GCONF_IS_CLIENT(gconf_client));
 
-	gps_disabled = gconf_client_get_bool(gconf_client, GCONF_KEY_GPS_DISABLED, NULL);
-	net_disabled = gconf_client_get_bool(gconf_client, GCONF_KEY_NET_DISABLED, NULL);
+	gboolean gps_disabled = gconf_client_get_bool(gconf_client, GCONF_KEY_GPS_DISABLED, NULL);
+	gboolean net_disabled = gconf_client_get_bool(gconf_client, GCONF_KEY_NET_DISABLED, NULL);
 
 	dialog = g_try_new0(cpa_dialog, 1);
 	dialog->pan = hildon_pannable_area_new();
@@ -155,22 +159,45 @@ static cpa_dialog *cpa_dialog_new(GtkWindow *parent)
 	hildon_check_button_set_active(
 			HILDON_CHECK_BUTTON(dialog->gps_check_btn), !gps_disabled);
 
-	/*
-	 * TODO: Internal GPS/None
-	 * See gtk_list_store_new, hildon_touch_selector_new,
-	 * hildon_touch_selector_append_text_column
-	 */
-	dialog->gps_device_btn = hildon_button_new_with_text(
-			HILDON_SIZE_FINGER_HEIGHT,
-			HILDON_BUTTON_ARRANGEMENT_HORIZONTAL,
-			dgettext("osso-location-ui", "loca_fi_device"),
-			NULL);
+	/* TODO: Work this list out so it's functional */
+	liststore = gtk_list_store_new(3, 64, 64, 64);
+	gtk_list_store_append(liststore, &iter);
+	gtk_list_store_set(liststore, &iter, 0,
+			dgettext("osso-location-ui", "loca_li_device_internal"),
+			1, "las", 2, "com.nokia.Location", -1);
 
+	model = GTK_TREE_MODEL(liststore);
+	selector = hildon_touch_selector_new();
+	hildon_touch_selector_append_text_column(
+			HILDON_TOUCH_SELECTOR(selector), model, FALSE);
+	/* g_object_set(selector, "text-column"); */
+
+	dialog->gps_device_btn = hildon_picker_button_new(HILDON_SIZE_FINGER_HEIGHT,
+			HILDON_BUTTON_ARRANGEMENT_HORIZONTAL);
+	hildon_button_set_title(HILDON_BUTTON(dialog->gps_device_btn),
+			dgettext("osso-location-ui", "loca_fi_device"));
+
+	hildon_picker_button_set_selector(
+			HILDON_PICKER_BUTTON(dialog->gps_device_btn),
+			HILDON_TOUCH_SELECTOR(selector));
+
+	/* TODO: ^^ */
+
+	hildon_button_set_alignment(HILDON_BUTTON(dialog->gps_device_btn),
+			0.0, 0.0, 0.5, 1.0);
+	hildon_button_set_title_alignment(HILDON_BUTTON(dialog->gps_device_btn),
+			0.0, 0.5);
+	hildon_button_set_value_alignment(HILDON_BUTTON(dialog->gps_device_btn),
+			1.0, 0.5);
+
+	/* TODO: Test this pairing functionality on Fremantle */
 	dialog->gps_pair_btn = hildon_button_new_with_text(
 			HILDON_SIZE_FINGER_HEIGHT,
 			HILDON_BUTTON_ARRANGEMENT_HORIZONTAL,
 			dgettext("osso-location-ui", "loca_bv_pair_new_device"),
 			NULL);
+	hildon_button_set_alignment(HILDON_BUTTON(dialog->gps_pair_btn),
+			0.0, 0.0, 1.0, 1.0);
 
 	dialog->net_label = gtk_label_new(
 			dgettext("osso-location-ui", "loca_fi_network"));
