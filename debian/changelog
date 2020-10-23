@@ -1,3 +1,10 @@
+location-control (1.1.0) unstable; urgency=medium
+
+  * Rename cplocation.desktop to location-cp.desktop.
+  * Rename libcplocation to liblocation_applet.
+
+ -- Ivan J. <parazyd@dyne.org>  Sat, 24 Oct 2020 01:25:23 +0200
+
 location-control (1.0.0) unstable; urgency=medium
 
   * First release
