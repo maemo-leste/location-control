@@ -1,6 +1,6 @@
 .POSIX:
 
-NAME = libcplocation
+NAME = liblocation_applet
 LIB = $(NAME:=.so)
 OBJ = $(NAME:=.o)
 

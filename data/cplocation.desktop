@@ -4,5 +4,5 @@ Comment=Change the location settings
 Type=HildonControlPanelPlugin
 Icon=gps_location
 X-Text-Domain=osso-location-ui
-X-control-panel-plugin=libcplocation.so
+X-control-panel-plugin=liblocation_applet.so
 Categories=connectivity
