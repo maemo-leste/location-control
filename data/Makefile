@@ -6,9 +6,9 @@ all:
 
 install:
 	mkdir -p $(DESTDIR)$(HILDON_CONTROL_PANEL_DATADIR)
-	cp -f cplocation.desktop $(DESTDIR)$(HILDON_CONTROL_PANEL_DATADIR)
+	cp -f location-cp.desktop $(DESTDIR)$(HILDON_CONTROL_PANEL_DATADIR)
 
 uninstall:
-	rm -f $(DESTDIR)$(HILDON_CONTROL_PANEL_DATADIR)/cplocation.desktop
+	rm -f $(DESTDIR)$(HILDON_CONTROL_PANEL_DATADIR)/location-cp.desktop
 
 clean:
