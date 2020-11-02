@@ -1,12 +1,359 @@
-location-control (1.1.0) unstable; urgency=medium
+location-control (0.113-1) unstable; urgency=low
 
-  * Rename cplocation.desktop to location-cp.desktop.
-  * Rename libcplocation to liblocation_applet.
+  * Fixes: NB#144370 - Possible memory leak in hildon-status-menu process when
+    external GPS is enabled/disabled 50 times
 
- -- Ivan J. <parazyd@dyne.org>  Sat, 24 Oct 2020 01:25:23 +0200
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Mon, 02 Nov 2009 11:47:35 +0200
 
-location-control (1.0.0) unstable; urgency=medium
+location-control (0.112-1) unstable; urgency=low
 
-  * First release
+  * Fixes: NB#137815 - Location CPA layout: Group titles do not look proper
+  * Supl server entry dimmed when nw methods disabled
 
- -- Ivan J. <parazyd@dyne.org>  Fri, 16 Oct 2020 10:37:52 +0200
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 30 Sep 2009 16:24:11 +0300
+
+location-control (0.111-1) unstable; urgency=low
+
+  * Changed variable name to prevent error in compilation
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Mon, 20 Jul 2009 16:07:34 +0300
+
+location-control (0.110-1) unstable; urgency=low
+
+  * Fixes: NB#128434 - Layout issues with dialogs within Location CPA UI
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Thu, 16 Jul 2009 12:18:28 +0300
+
+location-control (0.109-1) unstable; urgency=low
+
+  * code cleanups
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Mon, 04 May 2009 13:19:12 +0300
+
+location-control (0.108-1) unstable; urgency=low
+
+  * Fixes: NB#110121 - save the SUPL server in lowercase.
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 29 Apr 2009 13:22:59 +0300
+
+location-control (0.107-1) unstable; urgency=low
+
+  * Fixes: NB#108408 - dbus assertions when opening the CPA.
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 01 Apr 2009 16:38:09 +0300
+
+location-control (0.106-1) unstable; urgency=low
+
+  * Various cleanups and small fixes.
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 03 Mar 2009 19:04:23 +0200
+
+location-control (0.105-1) unstable; urgency=low
+
+  * Fixes: NB#103158 - Wrong alignment in Location CPA list items
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 03 Mar 2009 15:49:57 +0200
+
+location-control (0.104-1) unstable; urgency=low
+
+  * switch to Hildon 2.2
+  * remove the duplicated BT signal handling code in location-cp.c
+  * small cleanups
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 10 Feb 2009 20:11:18 +0200
+
+location-control (0.103-1) unstable; urgency=low
+
+  * Fixes: NB#97714 Wrong category for location control panel
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Fri, 23 Jan 2009 11:09:23 +0200
+
+location-control (0.102-1) unstable; urgency=low
+
+  * various small fixes and cleanups
+  * Fixes: NB#96360 spurious listing of devices in Location control panel
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 07 Jan 2009 15:25:52 +0200
+
+location-control (0.101-1) unstable; urgency=low
+
+  * replace the deprecated GtkDialog with HildonDialog
+  * remove the build dependency on libhildonhelp-dev that is no
+    longer required since version 0.97-1
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Thu, 18 Dec 2008 20:17:25 +0200
+
+location-control (0.100-1) unstable; urgency=low
+
+  * Logical string fixes:
+    - remove the code for the no longer present "Cancel" button
+    - add a dependency on "hildon-libs-l10n-mr | hildon-libs-l10n-mr0"
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 17 Dec 2008 14:26:39 +0200
+
+location-control (0.99-1) unstable; urgency=low
+
+  * fix the icon name
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Fri, 12 Dec 2008 14:52:47 +0200
+
+location-control (0.98-1) unstable; urgency=low
+
+  * BT updates
+    Fixes: NB#94861 - names of External Devices are now shown properly
+    in the GPS device selection
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 10 Dec 2008 15:09:22 +0200
+
+location-control (0.97-1) unstable; urgency=low
+
+  * logical string fix: loca_bd_dialog_ok -> wdgt_bd_save
+  * use the new loca_va_unknown_device logical string
+  * no longer use hildon-help
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 09 Dec 2008 11:21:44 +0200
+
+location-control (0.96-1) unstable; urgency=low
+
+  * BT updates
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 09 Dec 2008 10:02:14 +0200
+
+location-control (0.95-1) unstable; urgency=low
+
+  * logical string fixes:
+    - use loca_ti_{general,services}
+    - add the missing dependency on
+      osso-location-ui-l10n-mr | osso-location-ui-l10n-mr0
+  * make location-control-dbg priority extra
+    (as recommended for debug packages)
+  * update Standards-Version to 3.8.0
+  * use ${binary:Version} instead of ${Source-Version}
+  * don't ignore "make distclean" errors
+  * don't ship empty /usr/{,s}bin dirs
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Wed, 03 Dec 2008 12:23:08 +0200
+
+location-control (0.94-1) unstable; urgency=low
+
+  * Added SUPL server text entry
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Thu, 30 Oct 2008 18:11:10 +0300
+
+location-control (0.93-1) unstable; urgency=low
+
+  * Fixes: NB#89719 - correctly display the option for Internal GPS
+    instead of "None"
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 21 Oct 2008 11:36:21 +0300
+
+location-control (0.92-1) unstable; urgency=low
+
+  * update icon name
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Mon, 20 Oct 2008 10:28:34 +0300
+
+location-control (0.91-1) unstable; urgency=low
+
+  * Removed outdated schema files. New ones will be delivered
+    as a part of liblocation.
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Mon, 18 Aug 2008 16:39:26 +0300
+
+location-control (0.90-2) unstable; urgency=low
+
+  * Updated debug package dependencies
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Tue, 08 Jul 2008 12:38:05 +0300
+
+location-control (0.90-1) unstable; urgency=low
+
+  * Initial port to the new location framework
+
+ -- Quanyi Sun <Quanyi.Sun@nokia.com>  Fri, 04 Jul 2008 13:22:07 +0300
+
+osso-applet-location (0.25-1) unstable; urgency=low
+
+  * When removing a BT device from the list, check if it is the currently set
+    device, and if so change the device to the internal one.
+  * Fixed: NB#74586
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue, 30 Oct 2007 15:31:00 +0000
+
+osso-applet-location (0.24-1) unstable; urgency=low
+
+  * Only make an added device default if we had instigated a search
+  * Fixed: NB#74361, NB#74364
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Fri, 26 Oct 2007 16:35:36 +0100
+
+osso-applet-location (0.23-1) unstable; urgency=low
+
+  * Check that device isn't None when turning on GPS.
+  * Fixed: NB#70570
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed, 26 Sep 2007 11:22:08 +0100
+
+osso-applet-location (0.22-1) unstable; urgency=low
+
+  * When changing the device, ghost the Location button.
+  * When device is None to begin with, ghost the Location button
+  * Fixed: NB#66753
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed, 29 Aug 2007 12:13:12 +0100
+
+osso-applet-location (0.21-1) unstable; urgency=low
+
+  * Dim the Location button when enable gps is off.
+  * Fixed: NB#65876
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Mon, 20 Aug 2007 13:22:23 +0100
+
+osso-applet-location (0.20-2) unstable; urgency=low
+
+  * Fixed wrong email in debian/changelog
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Thu,  9 Aug 2007 09:37:14 +0300
+
+osso-applet-location (0.20-1) unstable; urgency=low
+
+  * Don't do pairing manually. Fixed: NB#64432
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed,  8 Aug 2007 17:12:49 +0100
+
+osso-applet-location (0.19-1) unstable; urgency=low
+
+  * Fix the help library.
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Fri,  3 Aug 2007 17:15:44 +0100
+
+osso-applet-location (0.18-1) unstable; urgency=low
+
+  * Only enable the devices if something changes. Fixed: NB#62504
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed,  1 Aug 2007 19:28:03 +0100
+
+osso-applet-location (0.17-2) unstable; urgency=low
+
+  * Added build dependency to libosso-help-dev for old(?) help framework
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed,  1 Aug 2007 10:13:33 +0300
+
+osso-applet-location (0.17-1) unstable; urgency=low
+
+  * Implement help. Fixed: NB#61025
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue, 31 Jul 2007 19:08:08 +0100
+
+osso-applet-location (0.16-1) unstable; urgency=low
+
+  * Pass osso_context_t to location-details-dialog.
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Mon, 30 Jul 2007 19:17:20 +0100
+
+osso-applet-location (0.14-1) unstable; urgency=low
+
+  * Remove the custom enabling config code and use the libgpsbt system.
+  * Fixed: NB#61848
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Fri,  6 Jul 2007 12:53:57 +0100
+
+osso-applet-location (0.13-1) unstable; urgency=low
+
+  * Fix the cp icon.
+  * Fixed: NB#62092
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue,  3 Jul 2007 18:59:44 +0100
+
+osso-applet-location (0.12-1) unstable; urgency=low
+
+  * Fixed: NB#61568
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue, 26 Jun 2007 16:28:14 +0100
+
+osso-applet-location (0.11-1) unstable; urgency=low
+
+  * Fix the i18n
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Thu, 21 Jun 2007 08:44:59 +0100
+
+osso-applet-location (0.10-1) unstable; urgency=low
+
+  * Add l10n control deps.
+  * Fixed: NB#60753
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed, 20 Jun 2007 12:07:17 +0100
+
+osso-applet-location (0.9-1) unstable; urgency=low
+
+  * Fix i18n
+  * Fix i18n in control-panel
+  * Fixed: NB#60750, NB#60753
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue, 19 Jun 2007 14:10:00 +0000
+
+osso-applet-location (0.8-1) unstable; urgency=low
+
+  * Fix potential crashes.
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue, 12 Jun 2007 16:17:00 +0000
+
+osso-applet-location (0.7-2) unstable; urgency=low
+
+  * Add debug package.
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Thu,  7 Jun 2007 11:54:05 +0100
+
+osso-applet-location (0.7-1) unstable; urgency=low
+
+  * Use the new API provided by liblocation and liblocation-ui to make the
+    libraries resident and hence prevent crashes when unloading modules.a
+  * Fixes: NB#58839
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Tue,  5 Jun 2007 12:36:51 +0100
+
+osso-applet-location (0.6-1) unstable; urgency=low
+
+  * Listen for the name changed signal (Fixes: NB#57019)
+  * Fix filter string (Fixes: NB#57011, NB#56976)
+  * Remove the filter once the dialog has been closed (Fixes: NB#57961)
+  * Remove the old BT pairing code, use the new LocationBTDeviceManager
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed, 23 May 2007 15:15:00 +0000
+
+osso-applet-location (0.5-1) unstable; urgency=low
+
+  * Require version 0.2-13 of gpsbt
+  * Use logical id for applet name
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed, 16 May 2007 10:52:00 +0000
+
+osso-applet-location (0.4-1) unstable; urgency=low
+
+  * Fix the location details button sensitivity.
+  * Fix the desktop name
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed,  9 May 2007 14:30:00 +0000
+
+osso-applet-location (0.3-1) unstable; urgency=low
+
+  * Show not available banners
+  * Set the default to FALSE
+  * Correctly select the current device
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Wed,  2 May 2007 15:28:00 +0000
+
+osso-applet-location (0.2-1) unstable; urgency=low
+
+  * Build fixes.
+  * Disable static library
+  * Don't copy .la files into .deb
+  * Implement setting the correct GPS device.
+
+ -- Mikko Korpelainen <mikko.korpelainen@nokia.com>  Thu,  26 Apr 2007 16:54:00 +0000
+
+osso-applet-location (0.1-1) unstable; urgency=low
+
+  * Initial Release.
+
+ -- unknown <x@x.com>  Mon,  5 Mar 2007 18:03:39 +0000
