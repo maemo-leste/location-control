@@ -26,7 +26,7 @@
       <applyto>/system/nokia/location/network-disabled</applyto>
       <owner>liblocation</owner>
       <type>bool</type>
-      <default>FALSE</default>
+      <default>TRUE</default>
       <locale name="C">
         <short>A boolean value that tells whether the network-based methods
         are is disabled or enabled</short>

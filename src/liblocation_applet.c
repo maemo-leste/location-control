@@ -208,6 +208,12 @@ static cpa_dialog *cpa_dialog_new(GtkWindow *parent)
 			dgettext("osso-location-ui", "loca_fi_enable_network_posit"));
 	hildon_check_button_set_active(
 			HILDON_CHECK_BUTTON(dialog->net_check_btn), !net_disabled);
+	/* XXX: Disabled until actual network positioning is implemented.
+	 * Note that liblocation and/or location-daemon also need to become
+	 * aware if this and act accordingly.
+	 * e.g. Don't start the gpsd part if GPS is disabled but network is
+	 */
+	gtk_widget_set_sensitive(dialog->net_check_btn, FALSE);
 
 	dialog->server_label = gtk_label_new(
 			dgettext("osso-location-ui", "loca_fi_location_server"));
